@@ -5,7 +5,9 @@
     <File Path="data/Transactions.csv" />
   </Folder>
   <Folder Name="/docker/">
+    <File Path="docker/.dockerignore" />
     <File Path="docker/docker-compose.yml" />
+    <File Path="docker/Dockerfile" />
   </Folder>
   <Folder Name="/source/">
     <Project Path="source/PortfolioCalculator.Application/PortfolioCalculator.Application.csproj" />

@@ -22,11 +22,24 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: rootpassword
-
       ME_CONFIG_BASICAUTH_USERNAME: admin
       ME_CONFIG_BASICAUTH_PASSWORD: admin
     depends_on:
       - mongo
+
+  cli:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: PortfolioCalculator-cli
+    depends_on:
+      - mongo
+    environment:
+      Mongo__ConnectionString: mongodb://root:rootpassword@mongo:27017
+      Mongo__Database: PortfolioCalculatorDatabase
+    volumes:
+      - ../data:/data:ro
+    profiles: ["tools"]
 
 volumes:
   mongo_data:
