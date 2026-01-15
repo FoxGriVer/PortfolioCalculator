@@ -13,3 +13,4 @@ C:\Users\evri3\source\repos\PortfolioCalculator\source\PortfolioCalculator.Appli
 C:\Users\evri3\source\repos\PortfolioCalculator\source\PortfolioCalculator.Application\obj\Debug\net10.0\refint\PortfolioCalculator.Application.dll
 C:\Users\evri3\source\repos\PortfolioCalculator\source\PortfolioCalculator.Application\obj\Debug\net10.0\PortfolioCalculator.Application.pdb
 C:\Users\evri3\source\repos\PortfolioCalculator\source\PortfolioCalculator.Application\obj\Debug\net10.0\ref\PortfolioCalculator.Application.dll
+C:\Users\evri3\source\repos\PortfolioCalculator\source\PortfolioCalculator.Application\obj\Debug\net10.0\PortfolioCalculator.Application.sourcelink.json

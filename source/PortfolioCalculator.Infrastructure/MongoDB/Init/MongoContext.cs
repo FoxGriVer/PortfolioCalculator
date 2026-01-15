@@ -1,5 +1,4 @@
 ﻿using MongoDB.Driver;
-using PortfolioCalculator.Infrastructure.MongoDB.Configuration;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 
 namespace PortfolioCalculator.Infrastructure.MongoDB.Init
@@ -13,10 +12,9 @@ namespace PortfolioCalculator.Infrastructure.MongoDB.Init
         public IMongoCollection<TransactionDocument> Transactions => Db.GetCollection<TransactionDocument>("transactions");
         public IMongoCollection<QuoteDocument> Quotes => Db.GetCollection<QuoteDocument>("quotes");
 
-        public MongoContext(MongoDBSettings settings)
+        public MongoContext(IMongoDatabase mongoDatabase)
         {
-            var client = new MongoClient(settings.ConnectionString);
-            Db = client.GetDatabase(settings.Database);
+            Db = mongoDatabase;
         }
     }
 }

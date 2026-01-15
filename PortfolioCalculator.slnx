@@ -13,5 +13,7 @@
     <Project Path="source/PortfolioCalculator.Domain/PortfolioCalculator.Domain.csproj" />
     <Project Path="source/PortfolioCalculator.Infrastructure/PortfolioCalculator.Infrastructure.csproj" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="tests/PortfolioCalculator.Infrastructure.Tests/PortfolioCalculator.Infrastructure.Tests.csproj" Id="9d18eb29-c790-425c-ac4b-89f6e8328d02" />
+  </Folder>
 </Solution>
