@@ -1,6 +1,7 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using MongoDB.Driver;
+using PortfolioCalculator.Application.Abstractions.Import;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Import.Mapping;
 using PortfolioCalculator.Infrastructure.MongoDB.Import.Rows;
@@ -9,7 +10,7 @@ using System.Globalization;
 
 namespace PortfolioCalculator.Infrastructure.MongoDB.Import
 {
-    public sealed class CsvImportService
+    public sealed class CsvImportService : ICsvImportService
     {
         private readonly IQuoteWriteRepository _quoteWriteRepository;
         private readonly ITransactionWriteRepository _transactionWriteRepository;

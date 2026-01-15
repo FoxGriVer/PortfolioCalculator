@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PortfolioCalculator.ConsoleApp": {
+      "commandName": "Project",
+      "workingDirectory": "$(SolutionDir)"
+    }
+  }
+}

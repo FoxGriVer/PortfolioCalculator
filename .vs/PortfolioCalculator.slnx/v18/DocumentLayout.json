@@ -1,12 +1,71 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7DA5416A-C377-9507-DA80-F6E7E1084EDB}|source\\PortfolioCalculator.ConsoleApp\\PortfolioCalculator.ConsoleApp.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.consoleapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DA5416A-C377-9507-DA80-F6E7E1084EDB}|source\\PortfolioCalculator.ConsoleApp\\PortfolioCalculator.ConsoleApp.csproj|solutionrelative:source\\portfoliocalculator.consoleapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.infrastructure\\mongodb\\import\\csvimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|solutionrelative:source\\portfoliocalculator.infrastructure\\mongodb\\import\\csvimportservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{015FE221-96B2-289B-A0E8-6E7354784A75}|data{015FE221-96B2-289B-A0E8-6E7354784A75}|C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Transactions.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{015FE221-96B2-289B-A0E8-6E7354784A75}|data{015FE221-96B2-289B-A0E8-6E7354784A75}|solutionrelative:data\\Transactions.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CsvImportService.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\CsvImportService.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\CsvImportService.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\CsvImportService.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\CsvImportService.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAA5wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T18:15:20.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Transactions.csv",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Transactions.csv",
+              "RelativeDocumentMoniker": "data\\Transactions.csv",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Transactions.csv",
+              "RelativeToolTip": "data\\Transactions.csv",
+              "ViewState": "AgIAAAfKCwAAAAAAAAAAABQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2026-01-15T17:53:05.125Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.ConsoleApp\\Program.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.ConsoleApp\\Program.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.ConsoleApp\\Program.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.ConsoleApp\\Program.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAuwAsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T17:16:18.839Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
+using PortfolioCalculator.Application.Abstractions.Database;
+using PortfolioCalculator.Application.Abstractions.Import;
 using PortfolioCalculator.Infrastructure.MongoDB.Configuration;
 using PortfolioCalculator.Infrastructure.MongoDB.Import;
 using PortfolioCalculator.Infrastructure.MongoDB.Init;
@@ -29,9 +31,8 @@ namespace PortfolioCalculator.Infrastructure.MongoDB.DI
             services.AddSingleton<MongoContext>();
 
             // Mongo specific services
-
-            //services.AddSingleton<MongoIndexInitializer>();
-            services.AddSingleton<CsvImportService>();
+            services.AddSingleton<IDatabaseInitializer, MongoIndexInitializer>();
+            services.AddSingleton<ICsvImportService, CsvImportService>();
 
             //// Write repositories
             services.AddSingleton<IQuoteWriteRepository, QuoteWriteRepository>();
