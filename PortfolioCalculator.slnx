@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/data/">
+    <File Path="data/Investments.csv" />
+    <File Path="data/Quotes.csv" />
+    <File Path="data/Transactions.csv" />
+  </Folder>
+  <Folder Name="/docker/">
+    <File Path="docker/docker-compose.yml" />
+  </Folder>
+  <Folder Name="/source/">
+    <Project Path="source/PortfolioCalculator.Application/PortfolioCalculator.Application.csproj" />
+    <Project Path="source/PortfolioCalculator.ConsoleApp/PortfolioCalculator.ConsoleApp.csproj" />
+    <Project Path="source/PortfolioCalculator.Domain/PortfolioCalculator.Domain.csproj" />
+    <Project Path="source/PortfolioCalculator.Infrastructure/PortfolioCalculator.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>

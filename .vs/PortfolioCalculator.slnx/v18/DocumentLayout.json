@@ -1,0 +1,292 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.infrastructure\\mongodb\\import\\rows\\quotesrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|solutionrelative:source\\portfoliocalculator.infrastructure\\mongodb\\import\\rows\\quotesrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.infrastructure\\mongodb\\import\\rows\\transactionsrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|solutionrelative:source\\portfoliocalculator.infrastructure\\mongodb\\import\\rows\\transactionsrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{015FE221-96B2-289B-A0E8-6E7354784A75}|data{015FE221-96B2-289B-A0E8-6E7354784A75}|C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Transactions.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{015FE221-96B2-289B-A0E8-6E7354784A75}|data{015FE221-96B2-289B-A0E8-6E7354784A75}|solutionrelative:data\\Transactions.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.infrastructure\\mongodb\\import\\rows\\investmentsrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|solutionrelative:source\\portfoliocalculator.infrastructure\\mongodb\\import\\rows\\investmentsrow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{015FE221-96B2-289B-A0E8-6E7354784A75}|data{015FE221-96B2-289B-A0E8-6E7354784A75}|C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Investments.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{015FE221-96B2-289B-A0E8-6E7354784A75}|data{015FE221-96B2-289B-A0E8-6E7354784A75}|solutionrelative:data\\Investments.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.infrastructure\\mongodb\\init\\mongocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|solutionrelative:source\\portfoliocalculator.infrastructure\\mongodb\\init\\mongocontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.infrastructure\\mongodb\\documents\\ownershiplinkdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|solutionrelative:source\\portfoliocalculator.infrastructure\\mongodb\\documents\\ownershiplinkdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{015FE221-96B2-289B-A0E8-6E7354784A75}|data{015FE221-96B2-289B-A0E8-6E7354784A75}|C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Quotes.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{015FE221-96B2-289B-A0E8-6E7354784A75}|data{015FE221-96B2-289B-A0E8-6E7354784A75}|solutionrelative:data\\Quotes.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.infrastructure\\mongodb\\documents\\quotedocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|solutionrelative:source\\portfoliocalculator.infrastructure\\mongodb\\documents\\quotedocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.infrastructure\\mongodb\\documents\\transactiondocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|solutionrelative:source\\portfoliocalculator.infrastructure\\mongodb\\documents\\transactiondocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.infrastructure\\mongodb\\documents\\investmentdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|solutionrelative:source\\portfoliocalculator.infrastructure\\mongodb\\documents\\investmentdocument.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.infrastructure\\mongodb\\configuration\\mongodbsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9381227-F4BC-070F-5ACF-D42B42861582}|source\\PortfolioCalculator.Infrastructure\\PortfolioCalculator.Infrastructure.csproj|solutionrelative:source\\portfoliocalculator.infrastructure\\mongodb\\configuration\\mongodbsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03835415-866F-4C0F-B485-DCD905843672}|source\\PortfolioCalculator.Domain\\PortfolioCalculator.Domain.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.domain\\enums\\transactiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03835415-866F-4C0F-B485-DCD905843672}|source\\PortfolioCalculator.Domain\\PortfolioCalculator.Domain.csproj|solutionrelative:source\\portfoliocalculator.domain\\enums\\transactiontype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{03835415-866F-4C0F-B485-DCD905843672}|source\\PortfolioCalculator.Domain\\PortfolioCalculator.Domain.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.domain\\enums\\investmenttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{03835415-866F-4C0F-B485-DCD905843672}|source\\PortfolioCalculator.Domain\\PortfolioCalculator.Domain.csproj|solutionrelative:source\\portfoliocalculator.domain\\enums\\investmenttype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DA5416A-C377-9507-DA80-F6E7E1084EDB}|source\\PortfolioCalculator.ConsoleApp\\PortfolioCalculator.ConsoleApp.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.consoleapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7DA5416A-C377-9507-DA80-F6E7E1084EDB}|source\\PortfolioCalculator.ConsoleApp\\PortfolioCalculator.ConsoleApp.csproj|solutionrelative:source\\portfoliocalculator.consoleapp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7DA5416A-C377-9507-DA80-F6E7E1084EDB}|source\\PortfolioCalculator.ConsoleApp\\PortfolioCalculator.ConsoleApp.csproj|c:\\users\\evri3\\source\\repos\\portfoliocalculator\\source\\portfoliocalculator.consoleapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7DA5416A-C377-9507-DA80-F6E7E1084EDB}|source\\PortfolioCalculator.ConsoleApp\\PortfolioCalculator.ConsoleApp.csproj|solutionrelative:source\\portfoliocalculator.consoleapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuotesRow.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\QuotesRow.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\QuotesRow.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\QuotesRow.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\QuotesRow.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T11:36:03.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TransactionsRow.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\TransactionsRow.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\TransactionsRow.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\TransactionsRow.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\TransactionsRow.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T11:35:23.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "InvestmentsRow.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\InvestmentsRow.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\InvestmentsRow.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\InvestmentsRow.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Import\\Rows\\InvestmentsRow.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T11:31:06.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MongoContext.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Init\\MongoContext.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Init\\MongoContext.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Init\\MongoContext.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Init\\MongoContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T11:23:20.19Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OwnershipLinkDocument.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\OwnershipLinkDocument.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\OwnershipLinkDocument.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\OwnershipLinkDocument.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\OwnershipLinkDocument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T11:21:48.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Quotes.csv",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Quotes.csv",
+              "RelativeDocumentMoniker": "data\\Quotes.csv",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Quotes.csv",
+              "RelativeToolTip": "data\\Quotes.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2026-01-15T11:20:42.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "QuoteDocument.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\QuoteDocument.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\QuoteDocument.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\QuoteDocument.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\QuoteDocument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T11:20:33.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TransactionDocument.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\TransactionDocument.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\TransactionDocument.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\TransactionDocument.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\TransactionDocument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T11:15:31.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Investments.csv",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Investments.csv",
+              "RelativeDocumentMoniker": "data\\Investments.csv",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Investments.csv",
+              "RelativeToolTip": "data\\Investments.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABE/AAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2026-01-15T10:35:25.883Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Transactions.csv",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Transactions.csv",
+              "RelativeDocumentMoniker": "data\\Transactions.csv",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\data\\Transactions.csv",
+              "RelativeToolTip": "data\\Transactions.csv",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2026-01-15T10:36:24.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "InvestmentDocument.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\InvestmentDocument.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\InvestmentDocument.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\InvestmentDocument.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Documents\\InvestmentDocument.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T10:58:25.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MongoDBSettings.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Configuration\\MongoDBSettings.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Configuration\\MongoDBSettings.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Infrastructure\\MongoDB\\Configuration\\MongoDBSettings.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Infrastructure\\MongoDB\\Configuration\\MongoDBSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T10:41:03.694Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TransactionType.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Domain\\Enums\\TransactionType.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Domain\\Enums\\TransactionType.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Domain\\Enums\\TransactionType.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Domain\\Enums\\TransactionType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T10:37:25.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "InvestmentType.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Domain\\Enums\\InvestmentType.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.Domain\\Enums\\InvestmentType.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.Domain\\Enums\\InvestmentType.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.Domain\\Enums\\InvestmentType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T10:35:43.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.ConsoleApp\\appsettings.json",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.ConsoleApp\\appsettings.json",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.ConsoleApp\\appsettings.json",
+              "RelativeToolTip": "source\\PortfolioCalculator.ConsoleApp\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-15T10:23:54.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.ConsoleApp\\Program.cs",
+              "RelativeDocumentMoniker": "source\\PortfolioCalculator.ConsoleApp\\Program.cs",
+              "ToolTip": "C:\\Users\\evri3\\source\\repos\\PortfolioCalculator\\source\\PortfolioCalculator.ConsoleApp\\Program.cs",
+              "RelativeToolTip": "source\\PortfolioCalculator.ConsoleApp\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-15T10:13:48.103Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
