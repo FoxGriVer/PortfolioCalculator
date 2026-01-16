@@ -1,6 +1,6 @@
 ﻿using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 
-namespace PortfolioCalculator.Infrastructure.MongoDB.Repos.Write.Interfaces
+namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Write.Interfaces
 {
     public interface IQuoteWriteRepository
     {

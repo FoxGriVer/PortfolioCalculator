@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Init;
-using PortfolioCalculator.Infrastructure.MongoDB.Repos.Write;
+using PortfolioCalculator.Infrastructure.MongoDB.Repositories.Write;
 using Testcontainers.MongoDb;
 
 namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
@@ -15,7 +15,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             .WithPassword("rootpassword")
             .Build();
 
-        private MongoContext _ctx = default!;
+        private MongoContext _mongoContext = default!;
         private QuoteWriteRepository _repo = default!;
         private IMongoDatabase _db = default!;
 
@@ -26,8 +26,8 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             var client = new MongoClient(_mongo.GetConnectionString());
             _db = client.GetDatabase("PortfolioCalculator_test");
 
-            _ctx = new MongoContext(_db);
-            _repo = new QuoteWriteRepository(_ctx);
+            _mongoContext = new MongoContext(_db);
+            _repo = new QuoteWriteRepository(_mongoContext);
         }
 
         public async Task DisposeAsync()
@@ -49,7 +49,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.InsertManyAsync(docs, CancellationToken.None);
 
             // Assert
-            var count = await _ctx.Quotes.CountDocumentsAsync(Builders<QuoteDocument>.Filter.Empty);
+            var count = await _mongoContext.Quotes.CountDocumentsAsync(Builders<QuoteDocument>.Filter.Empty);
             count.Should().Be(2);
         }
 
@@ -57,7 +57,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
         public async Task DeleteAllAsync_DeletesDocs()
         {
             // Arrange
-            await _ctx.Quotes.InsertManyAsync(new[]
+            await _mongoContext.Quotes.InsertManyAsync(new[]
             {
                 new QuoteDocument { StockId = "ISIN1", Date = new DateTime(2019, 12, 30, 0, 0, 0, DateTimeKind.Utc), Price = 100m },
             });
@@ -66,7 +66,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.DeleteAllAsync(CancellationToken.None);
 
             // Assert
-            var count = await _ctx.Quotes.CountDocumentsAsync(Builders<QuoteDocument>.Filter.Empty);
+            var count = await _mongoContext.Quotes.CountDocumentsAsync(Builders<QuoteDocument>.Filter.Empty);
             count.Should().Be(0);
         }
 
@@ -77,7 +77,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.InsertManyAsync(Array.Empty<QuoteDocument>(), CancellationToken.None);
 
             // Assert
-            var count = await _ctx.Quotes.CountDocumentsAsync(Builders<QuoteDocument>.Filter.Empty);
+            var count = await _mongoContext.Quotes.CountDocumentsAsync(Builders<QuoteDocument>.Filter.Empty);
             count.Should().Be(0);
         }
     }

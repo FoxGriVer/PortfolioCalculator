@@ -1,6 +1,6 @@
 ﻿using MediatR;
-using PortfolioCalculator.Application.Abstractions.Database;
 using PortfolioCalculator.Application.Abstractions.Import;
+using PortfolioCalculator.Application.Abstractions.Repositories;
 
 namespace PortfolioCalculator.Application.Import
 {
@@ -15,9 +15,9 @@ namespace PortfolioCalculator.Application.Import
             _csvImportService = csvImportService;
         }
 
-        public async Task<ImportAllCsvResult> Handle(ImportAllCsvCommand request, CancellationToken ct)
+        public async Task<ImportAllCsvResult> Handle(ImportAllCsvCommand request, CancellationToken cancellationToken)
         {
-            await _databaseInitializer.EnsureIndexesAsync(ct);
+            await _databaseInitializer.EnsureIndexesAsync(cancellationToken);
 
             var investmentsPath = Path.Combine(request.FolderPath, "Investments.csv");
             var transactionsPath = Path.Combine(request.FolderPath, "Transactions.csv");
@@ -30,9 +30,9 @@ namespace PortfolioCalculator.Application.Import
             if (!File.Exists(quotesPath))
                 throw new FileNotFoundException($"File not found: {quotesPath}");
 
-            var investments = await _csvImportService.ImportInvestmentsAsync(investmentsPath, ct);
-            var transactions = await _csvImportService.ImportTransactionsAsync(transactionsPath, ct);
-            var quotes = await _csvImportService.ImportQuotesAsync(quotesPath, ct);
+            var investments = await _csvImportService.ImportInvestmentsAsync(investmentsPath, cancellationToken);
+            var transactions = await _csvImportService.ImportTransactionsAsync(transactionsPath, cancellationToken);
+            var quotes = await _csvImportService.ImportQuotesAsync(quotesPath, cancellationToken);
 
             return new ImportAllCsvResult(investments, transactions, quotes);
         }

@@ -1,6 +1,6 @@
 ﻿using Moq;
-using PortfolioCalculator.Application.Abstractions.Database;
 using PortfolioCalculator.Application.Abstractions.Import;
+using PortfolioCalculator.Application.Abstractions.Repositories;
 using PortfolioCalculator.Application.Import;
 
 namespace PortfolioCalculator.Application.Tests

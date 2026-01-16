@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Init;
-using PortfolioCalculator.Infrastructure.MongoDB.Repos.Write;
+using PortfolioCalculator.Infrastructure.MongoDB.Repositories.Write;
 using Testcontainers.MongoDb;
 
 namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
@@ -15,7 +15,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             .WithPassword("rootpassword")
             .Build();
 
-        private MongoContext _ctx = default!;
+        private MongoContext _mongoContext = default!;
         private InvestmentWriteRepository _repo = default!;
         private IMongoDatabase _db = default!;
 
@@ -26,8 +26,8 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             var client = new MongoClient(_mongo.GetConnectionString());
             _db = client.GetDatabase("PortfolioCalculator_test");
 
-            _ctx = new MongoContext(_db);
-            _repo = new InvestmentWriteRepository(_ctx);
+            _mongoContext = new MongoContext(_db);
+            _repo = new InvestmentWriteRepository(_mongoContext);
         }
 
         public async Task DisposeAsync()
@@ -61,10 +61,10 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.BulkUpsertAsync(models, CancellationToken.None);
 
             // Assert
-            var count = await _ctx.Investments.CountDocumentsAsync(Builders<InvestmentDocument>.Filter.Empty);
+            var count = await _mongoContext.Investments.CountDocumentsAsync(Builders<InvestmentDocument>.Filter.Empty);
             count.Should().Be(2);
 
-            var inv1 = await _ctx.Investments.Find(x => x.Id == "INV1").FirstOrDefaultAsync();
+            var inv1 = await _mongoContext.Investments.Find(x => x.Id == "INV1").FirstOrDefaultAsync();
             inv1.Should().NotBeNull();
             inv1!.Type.Should().Be("Stock");
             inv1.ISIN.Should().Be("ISIN1");
@@ -101,10 +101,10 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
 
             await _repo.BulkUpsertAsync(updated, CancellationToken.None);
 
-            var count = await _ctx.Investments.CountDocumentsAsync(Builders<InvestmentDocument>.Filter.Empty);
+            var count = await _mongoContext.Investments.CountDocumentsAsync(Builders<InvestmentDocument>.Filter.Empty);
             count.Should().Be(1);
 
-            var inv1 = await _ctx.Investments.Find(x => x.Id == "INV1").FirstOrDefaultAsync();
+            var inv1 = await _mongoContext.Investments.Find(x => x.Id == "INV1").FirstOrDefaultAsync();
             inv1.Should().NotBeNull();
             inv1!.ISIN.Should().Be("ISIN_NEW");
         }
@@ -116,7 +116,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.BulkUpsertAsync(Array.Empty<WriteModel<InvestmentDocument>>(), CancellationToken.None);
 
             // Assert
-            var count = await _ctx.Investments.CountDocumentsAsync(Builders<InvestmentDocument>.Filter.Empty);
+            var count = await _mongoContext.Investments.CountDocumentsAsync(Builders<InvestmentDocument>.Filter.Empty);
             count.Should().Be(0);
         }
 

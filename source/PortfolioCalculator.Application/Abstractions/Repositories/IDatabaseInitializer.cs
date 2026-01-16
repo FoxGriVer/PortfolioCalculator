@@ -1,4 +1,4 @@
-﻿namespace PortfolioCalculator.Application.Abstractions.Database
+﻿namespace PortfolioCalculator.Application.Abstractions.Repositories
 {
     public interface IDatabaseInitializer
     {

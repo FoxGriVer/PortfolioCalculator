@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Init;
-using PortfolioCalculator.Infrastructure.MongoDB.Repos.Write;
+using PortfolioCalculator.Infrastructure.MongoDB.Repositories.Write;
 using Testcontainers.MongoDb;
 
 namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
@@ -15,7 +15,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             .WithPassword("rootpassword")
             .Build();
 
-        private MongoContext _ctx = default!;
+        private MongoContext _mongoContext = default!;
         private TransactionWriteRepository _repo = default!;
         private IMongoDatabase _db = default!;
 
@@ -26,8 +26,8 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             var client = new MongoClient(_mongo.GetConnectionString());
             _db = client.GetDatabase("PortfolioCalculator_test");
 
-            _ctx = new MongoContext(_db);
-            _repo = new TransactionWriteRepository(_ctx);
+            _mongoContext = new MongoContext(_db);
+            _repo = new TransactionWriteRepository(_mongoContext);
         }
 
         public async Task DisposeAsync()
@@ -68,7 +68,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.InsertManyAsync(docs, CancellationToken.None);
 
             // Assert
-            var count = await _ctx.Transactions.CountDocumentsAsync(Builders<TransactionDocument>.Filter.Empty);
+            var count = await _mongoContext.Transactions.CountDocumentsAsync(Builders<TransactionDocument>.Filter.Empty);
             count.Should().Be(3);
         }
 
@@ -76,7 +76,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
         public async Task DeleteAllAsync_DeletesDocs()
         {
             // Arrange
-            await _ctx.Transactions.InsertManyAsync(new[]
+            await _mongoContext.Transactions.InsertManyAsync(new[]
             {
                 new TransactionDocument
                 {
@@ -91,7 +91,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.DeleteAllAsync(CancellationToken.None);
 
             // Assert
-            var count = await _ctx.Transactions.CountDocumentsAsync(Builders<TransactionDocument>.Filter.Empty);
+            var count = await _mongoContext.Transactions.CountDocumentsAsync(Builders<TransactionDocument>.Filter.Empty);
             count.Should().Be(0);
         }
 
@@ -102,7 +102,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.InsertManyAsync(Array.Empty<TransactionDocument>(), CancellationToken.None);
 
             // Assert
-            var count = await _ctx.Transactions.CountDocumentsAsync(Builders<TransactionDocument>.Filter.Empty);
+            var count = await _mongoContext.Transactions.CountDocumentsAsync(Builders<TransactionDocument>.Filter.Empty);
             count.Should().Be(0);
         }
     }

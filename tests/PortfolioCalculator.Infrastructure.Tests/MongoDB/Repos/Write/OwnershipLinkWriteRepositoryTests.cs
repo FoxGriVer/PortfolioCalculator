@@ -2,7 +2,7 @@
 using MongoDB.Driver;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Init;
-using PortfolioCalculator.Infrastructure.MongoDB.Repos.Write;
+using PortfolioCalculator.Infrastructure.MongoDB.Repositories.Write;
 using Testcontainers.MongoDb;
 
 namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
@@ -15,7 +15,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             .WithPassword("rootpassword")
             .Build();
 
-        private MongoContext _ctx = default!;
+        private MongoContext _mongoContext = default!;
         private OwnershipLinkWriteRepository _repo = default!;
         private IMongoDatabase _db = default!;
 
@@ -26,8 +26,8 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             var client = new MongoClient(_mongo.GetConnectionString());
             _db = client.GetDatabase("PortfolioCalculator_test");
 
-            _ctx = new MongoContext(_db);
-            _repo = new OwnershipLinkWriteRepository(_ctx);
+            _mongoContext = new MongoContext(_db);
+            _repo = new OwnershipLinkWriteRepository(_mongoContext);
         }
 
         public async Task DisposeAsync()
@@ -49,10 +49,10 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.BulkUpsertAsync(models, CancellationToken.None);
 
             // Assert
-            var count = await _ctx.OwnershipLinks.CountDocumentsAsync(Builders<OwnershipLinkDocument>.Filter.Empty);
+            var count = await _mongoContext.OwnershipLinks.CountDocumentsAsync(Builders<OwnershipLinkDocument>.Filter.Empty);
             count.Should().Be(2);
 
-            var inv1 = await _ctx.OwnershipLinks.Find(x =>
+            var inv1 = await _mongoContext.OwnershipLinks.Find(x =>
                 x.OwnerType == "Investor" && x.OwnerId == "Investor1" && x.InvestmentId == "INV1"
             ).FirstOrDefaultAsync();
 
@@ -73,7 +73,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.BulkUpsertAsync(models, CancellationToken.None);
 
             // Assert
-            var count = await _ctx.OwnershipLinks.CountDocumentsAsync(Builders<OwnershipLinkDocument>.Filter.Empty);
+            var count = await _mongoContext.OwnershipLinks.CountDocumentsAsync(Builders<OwnershipLinkDocument>.Filter.Empty);
             count.Should().Be(1);
         }
 
@@ -84,7 +84,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Write
             await _repo.BulkUpsertAsync(Array.Empty<WriteModel<OwnershipLinkDocument>>(), CancellationToken.None);
 
             // Assert
-            var count = await _ctx.OwnershipLinks.CountDocumentsAsync(Builders<OwnershipLinkDocument>.Filter.Empty);
+            var count = await _mongoContext.OwnershipLinks.CountDocumentsAsync(Builders<OwnershipLinkDocument>.Filter.Empty);
             count.Should().Be(0);
         }
 

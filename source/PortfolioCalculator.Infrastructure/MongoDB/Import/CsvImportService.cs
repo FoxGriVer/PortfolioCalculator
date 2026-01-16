@@ -5,7 +5,7 @@ using PortfolioCalculator.Application.Abstractions.Import;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Import.Mapping;
 using PortfolioCalculator.Infrastructure.MongoDB.Import.Rows;
-using PortfolioCalculator.Infrastructure.MongoDB.Repos.Write.Interfaces;
+using PortfolioCalculator.Infrastructure.MongoDB.Repositories.Write.Interfaces;
 using System.Globalization;
 
 namespace PortfolioCalculator.Infrastructure.MongoDB.Import

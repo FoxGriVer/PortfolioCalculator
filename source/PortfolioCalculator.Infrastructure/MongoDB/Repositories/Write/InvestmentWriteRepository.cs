@@ -1,9 +1,9 @@
 ﻿using MongoDB.Driver;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Init;
-using PortfolioCalculator.Infrastructure.MongoDB.Repos.Write.Interfaces;
+using PortfolioCalculator.Infrastructure.MongoDB.Repositories.Write.Interfaces;
 
-namespace PortfolioCalculator.Infrastructure.MongoDB.Repos.Write
+namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Write
 {
     public sealed class InvestmentWriteRepository : IInvestmentWriteRepository
     {

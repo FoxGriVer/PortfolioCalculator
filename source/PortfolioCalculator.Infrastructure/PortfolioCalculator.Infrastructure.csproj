@@ -18,8 +18,4 @@
     <ProjectReference Include="..\PortfolioCalculator.Domain\PortfolioCalculator.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="MongoDB\Repositories\Read\" />
-  </ItemGroup>
-
 </Project>

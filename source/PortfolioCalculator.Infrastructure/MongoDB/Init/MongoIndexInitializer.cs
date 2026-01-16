@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using PortfolioCalculator.Application.Abstractions.Database;
+using PortfolioCalculator.Application.Abstractions.Repositories;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 
 namespace PortfolioCalculator.Infrastructure.MongoDB.Init

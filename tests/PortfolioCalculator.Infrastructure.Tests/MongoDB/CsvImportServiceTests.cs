@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using Moq;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Import;
-using PortfolioCalculator.Infrastructure.MongoDB.Repos.Write.Interfaces;
+using PortfolioCalculator.Infrastructure.MongoDB.Repositories.Write.Interfaces;
 using System.Globalization;
 
 namespace PortfolioCalculator.Infrastructure.Tests.MongoDB
