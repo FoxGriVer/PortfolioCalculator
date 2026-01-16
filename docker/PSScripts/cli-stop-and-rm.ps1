@@ -1,0 +1,2 @@
+docker stop PortfolioCalculator-cli
+docker rm PortfolioCalculator-cli

@@ -1,0 +1,1 @@
+docker compose -f ../docker-compose.yml --profile tools run --rm cli
