@@ -4,6 +4,13 @@ namespace PortfolioCalculator.Application.Abstractions.Repositories.Read
 {
     public interface ITransactionReadRepository
     {
-        Task<IReadOnlyList<TransactionModel>> GetUpToDateTransactionsAsync(string investmentId, DateTime referenceDate, CancellationToken ct);
+        Task<IReadOnlyList<TransactionModel>> GetUpToDateTransactionsAsync(string investmentId,
+            DateTime referenceDate,
+            CancellationToken ct);
+
+        Task<IReadOnlyDictionary<string, IReadOnlyList<TransactionModel>>> GetUpToDateTransactionsByInvestmentIdsAsync(
+            IReadOnlyCollection<string> investmentIds,
+            DateTime referenceDate,
+            CancellationToken ct);
     }
 }

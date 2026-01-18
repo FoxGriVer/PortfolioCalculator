@@ -13,9 +13,9 @@ namespace PortfolioCalculator.Application.PortfolioValuation
             _portfolioValuationService = portfolioValuationService;
         }
 
-        public Task<PortfolioValuationResultDto> Handle(GetPortfolioValueQuery request, CancellationToken ct)
+        public Task<PortfolioValuationResultDto> Handle(GetPortfolioValueQuery request, CancellationToken cancellationToken)
         {
-            var result = _portfolioValuationService.CalculateAsync(request.InvestorId, request.ReferenceDate, ct);
+            var result = _portfolioValuationService.CalculateAsync(request.InvestorId, request.ReferenceDate, cancellationToken);
 
             return result;
         }

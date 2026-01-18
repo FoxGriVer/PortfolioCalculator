@@ -5,6 +5,5 @@ namespace PortfolioCalculator.Application.Abstractions.PortfolioValuation
     public interface IPortfolioValuationService
     {
         Task<PortfolioValuationResultDto> CalculateAsync(string investorId, DateTime referenceDate, CancellationToken ct);
-
     }
 }

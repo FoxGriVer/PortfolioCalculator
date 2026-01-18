@@ -4,11 +4,11 @@
     {
         public decimal TotalValue { get; init; }
 
-        public IReadOnlyList<TypeCompositionItemDto> CompositionByType { get; init; }
+        public IReadOnlyList<PortfolioTypeCompositionItemDto> CompositionByType { get; init; }
 
         public PortfolioValuationResultDto(
             decimal totalValue,
-            IReadOnlyList<TypeCompositionItemDto> compositionByType)
+            IReadOnlyList<PortfolioTypeCompositionItemDto> compositionByType)
         {
             TotalValue = totalValue;
             CompositionByType = compositionByType;

@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using PortfolioCalculator.Application.Import;
+using PortfolioCalculator.Application.PortfolioValuation;
+using PortfolioCalculator.Application.PortfolioValuation.DTOs;
 
 namespace PortfolioCalculator.Cli;
 
@@ -67,7 +69,7 @@ public sealed class CliRunner
                     break;
 
                 case "value":
-                    HandleValue();
+                    await HandleValueAsync(args);
                     break;
 
                 default:
@@ -110,9 +112,50 @@ public sealed class CliRunner
         Console.WriteLine($"  Quotes rows:       {result.QuotesRows}");
     }
 
-    private static void HandleValue()
+    private async Task HandleValueAsync(string[] args)
     {
-        Console.WriteLine("Command 'value' is not wired yet in this CLI build.");
-        Console.WriteLine("Usage will be: value <investorId> <yyyy-mm-dd>");
+        if (args.Length != 3)
+        {
+            Console.WriteLine("Usage: value <investorId> <yyyy-mm-dd>");
+            Console.WriteLine("Example: value Investor0 2019-12-31");
+            return;
+        }
+
+        var investorId = args[1];
+
+        if (!DateTime.TryParseExact(
+                args[2],
+                "yyyy-MM-dd",
+                System.Globalization.CultureInfo.InvariantCulture,
+                System.Globalization.DateTimeStyles.None,
+                out var referenceDate))
+        {
+            Console.WriteLine("Invalid date format. Expected yyyy-mm-dd");
+            Console.WriteLine("Example: value Investor0 2019-12-31");
+            return;
+        }
+
+        Console.WriteLine($"Calculating portfolio value for '{investorId}' at {referenceDate:yyyy-MM-dd} ...");
+
+        PortfolioValuationResultDto result = await _mediator.Send(
+            new GetPortfolioValueQuery(investorId, referenceDate));
+
+        Console.WriteLine();
+        Console.WriteLine($"TOTAL: {result.TotalValue:N2}");
+        Console.WriteLine();
+
+        if (result.CompositionByType.Count == 0)
+        {
+            Console.WriteLine("No investments found.");
+            return;
+        }
+
+        Console.WriteLine("Breakdown by investment type:");
+        foreach (var item in result.CompositionByType.OrderByDescending(x => x.Value))
+        {
+            Console.WriteLine($"  {item.Type,-12} {item.Value,12:N2}");
+        }
+
+        Console.WriteLine();
     }
 }

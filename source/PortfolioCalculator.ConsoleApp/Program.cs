@@ -2,7 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using PortfolioCalculator.Application.DI;
 using PortfolioCalculator.Application.Import;
+using PortfolioCalculator.Application.PortfolioValuation;
 using PortfolioCalculator.Infrastructure.DI;
 
 namespace PortfolioCalculator.Cli;
@@ -32,7 +35,13 @@ internal static class Program
 
     private static IHost BuildHost(string[] args)
     {
-        var builder = Host.CreateDefaultBuilder(args);
+        var builder = Host.CreateDefaultBuilder(args)
+            .ConfigureLogging(logging =>
+            {
+                logging.ClearProviders();
+                logging.AddConsole();
+                logging.SetMinimumLevel(LogLevel.Debug);
+            });
 
         builder.ConfigureAppConfiguration(ConfigureConfiguration);
         builder.ConfigureServices(ConfigureServices);
@@ -67,8 +76,12 @@ internal static class Program
     {
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(typeof(ImportAllCsvCommand).Assembly));
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(typeof(GetPortfolioValueQuery).Assembly));
 
-        services.AddInfrastructure(context.Configuration);
+        services
+            .AddApplication()
+            .AddInfrastructure(context.Configuration);
     }
 
 }

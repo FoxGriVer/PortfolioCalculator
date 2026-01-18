@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using PortfolioCalculator.Application.Abstractions.Repositories.Models;
 using PortfolioCalculator.Application.Abstractions.Repositories.Read;
+using PortfolioCalculator.Domain.Enums;
 using PortfolioCalculator.Infrastructure.MongoDB.Init;
 
 namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read
@@ -27,7 +28,7 @@ namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read
 
             var investmentInfo = new InvestmentInfoModel(
                 investmentDocument.Id,
-                investmentDocument.Type,
+                Enum.Parse<InvestmentType>(investmentDocument.Type, ignoreCase: true),
                 investmentDocument.ISIN,
                 investmentDocument.City,
                 investmentDocument.FundId);
@@ -36,8 +37,8 @@ namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read
         }
 
         public async Task<IReadOnlyDictionary<string, InvestmentInfoModel>> GetByIdsAsync(
-        IReadOnlyCollection<string> investmentIds,
-        CancellationToken ct)
+            IReadOnlyCollection<string> investmentIds,
+            CancellationToken ct)
         {
             if (investmentIds.Count == 0)
             {
@@ -54,7 +55,7 @@ namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read
             {
                 var investmentInfo = new InvestmentInfoModel(
                     investmentDocument.Id,
-                    investmentDocument.Type,
+                    Enum.Parse<InvestmentType>(investmentDocument.Type, ignoreCase: true),
                     investmentDocument.ISIN,
                     investmentDocument.City,
                     investmentDocument.FundId);

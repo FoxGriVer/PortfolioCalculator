@@ -2,6 +2,7 @@
 using PortfolioCalculator.Application.Abstractions.Repositories.Models;
 using PortfolioCalculator.Application.Abstractions.Repositories.Read;
 using PortfolioCalculator.Domain.Enums;
+using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Init;
 
 namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read
@@ -44,6 +45,62 @@ namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read
             }
 
             return transactionModels;
+        }
+
+        public async Task<IReadOnlyDictionary<string, IReadOnlyList<TransactionModel>>> GetUpToDateTransactionsByInvestmentIdsAsync(
+            IReadOnlyCollection<string> investmentIds,
+            DateTime referenceDate,
+            CancellationToken ct)
+        {
+            if (investmentIds == null || investmentIds.Count == 0)
+            {
+                return new Dictionary<string, IReadOnlyList<TransactionModel>>();
+            }
+
+            // 1) Один запрос: investmentId IN (...) AND date <= referenceDate
+            var filter = Builders<TransactionDocument>.Filter.And(
+                Builders<TransactionDocument>.Filter.In(x => x.InvestmentId, investmentIds),
+                Builders<TransactionDocument>.Filter.Lte(x => x.Date, referenceDate));
+
+            var docs = await _mongoContext.Transactions
+                .Find(filter)
+                .SortBy(x => x.InvestmentId) // удобно для группировки
+                .ThenBy(x => x.Date)
+                .ToListAsync(ct);
+
+            // 2) Собираем Dictionary<string, List<TransactionModel>>
+            var result = new Dictionary<string, List<TransactionModel>>(StringComparer.OrdinalIgnoreCase);
+
+            foreach (var document in docs)
+            {
+                if (!Enum.TryParse<TransactionType>(document.Type, ignoreCase: true, out var transactionType))
+                {
+                    throw new InvalidOperationException($"Unknown transaction type '{document.Type}'");
+                }
+
+                var model = new TransactionModel(
+                    document.InvestmentId,
+                    document.Date,
+                    transactionType,
+                    document.Value);
+
+                if (!result.TryGetValue(document.InvestmentId, out var list))
+                {
+                    list = new List<TransactionModel>();
+                    result[document.InvestmentId] = list;
+                }
+
+                list.Add(model);
+            }
+
+            // 3) Превращаем в IReadOnlyDictionary<string, IReadOnlyList<TransactionModel>>
+            var readOnly = new Dictionary<string, IReadOnlyList<TransactionModel>>(StringComparer.OrdinalIgnoreCase);
+            foreach (var kv in result)
+            {
+                readOnly[kv.Key] = kv.Value;
+            }
+
+            return readOnly;
         }
     }
 }

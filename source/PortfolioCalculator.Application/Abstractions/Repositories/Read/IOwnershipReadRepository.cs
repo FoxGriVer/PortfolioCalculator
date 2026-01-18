@@ -1,7 +1,9 @@
-﻿namespace PortfolioCalculator.Application.Abstractions.Repositories.Read
+﻿using PortfolioCalculator.Domain.Enums;
+
+namespace PortfolioCalculator.Application.Abstractions.Repositories.Read
 {
     public interface IOwnershipReadRepository
     {
-        Task<IReadOnlyList<string>> GetOwnedInvestmentIdsAsync(string ownerType, string ownerId, CancellationToken ct);
+        Task<IReadOnlyList<string>> GetOwnedInvestmentIdsAsync(OwnerType ownerType, string ownerId, CancellationToken ct);
     }
 }

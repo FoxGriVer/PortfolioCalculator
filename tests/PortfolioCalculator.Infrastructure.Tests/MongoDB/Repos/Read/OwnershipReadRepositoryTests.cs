@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using MongoDB.Driver;
+using PortfolioCalculator.Domain.Enums;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Init;
 using PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read;
@@ -42,7 +43,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Read
         public async Task GetOwnedInvestmentIdsAsync_WhenNoLinks_ReturnsEmpty()
         {
             // Arrange
-            var ownerType = "Investor";
+            var ownerType = OwnerType.Investor;
             var ownerId = "INVESTOR-1";
 
             // Act
@@ -64,19 +65,19 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Read
             {
                 new OwnershipLinkDocument
                 {
-                    OwnerType = "Investor",
+                    OwnerType = OwnerType.Investor.ToString(),
                     OwnerId = "INVESTOR-1",
                     InvestmentId = "INV-1"
                 },
                 new OwnershipLinkDocument
                 {
-                    OwnerType = "Investor",
+                    OwnerType = OwnerType.Investor.ToString(),
                     OwnerId = "INVESTOR-2",
                     InvestmentId = "INV-2"
                 },
                 new OwnershipLinkDocument
                 {
-                    OwnerType = "Fund",
+                    OwnerType = OwnerType.Fund.ToString(),
                     OwnerId = "INVESTOR-1",
                     InvestmentId = "INV-3"
                 }
@@ -84,7 +85,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Read
 
             // Act
             var result = await _repo.GetOwnedInvestmentIdsAsync(
-                "Investor",
+                OwnerType.Investor,
                 "INVESTOR-1",
                 CancellationToken.None);
 
@@ -101,13 +102,13 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Read
             {
                 new OwnershipLinkDocument
                 {
-                    OwnerType = "Investor",
+                    OwnerType = OwnerType.Investor.ToString(),
                     OwnerId = "INVESTOR-1",
                     InvestmentId = "INV-1"
                 },
                 new OwnershipLinkDocument
                 {
-                    OwnerType = "Investor",
+                    OwnerType = OwnerType.Investor.ToString(),
                     OwnerId = "INVESTOR-1",
                     InvestmentId = "INV-2"
                 }
@@ -115,7 +116,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Read
 
             // Act
             var result = await _repo.GetOwnedInvestmentIdsAsync(
-                "Investor",
+                OwnerType.Investor,
                 "INVESTOR-1",
                 CancellationToken.None);
 

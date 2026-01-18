@@ -7,20 +7,20 @@ using PortfolioCalculator.Domain.Enums;
 
 namespace PortfolioCalculator.Application.PortfolioValuation
 {
-    public sealed class PortfolioValuationService : IPortfolioValuationService
+    public sealed class PortfolioBulkValuationService : IPortfolioValuationService
     {
         private readonly IOwnershipReadRepository _ownershipReadRepository;
         private readonly IInvestmentReadRepository _investmentReadRepository;
         private readonly ITransactionReadRepository _transactionReadRepository;
         private readonly IQuoteReadRepository _quoteReadRepository;
-        private readonly ILogger<PortfolioValuationService> _logger;
+        private readonly ILogger<PortfolioBulkValuationService> _logger;
 
-        public PortfolioValuationService(
+        public PortfolioBulkValuationService(
             IOwnershipReadRepository ownership,
             IInvestmentReadRepository investments,
             ITransactionReadRepository transactions,
             IQuoteReadRepository quotes,
-            ILogger<PortfolioValuationService> logger)
+            ILogger<PortfolioBulkValuationService> logger)
         {
             _ownershipReadRepository = ownership;
             _investmentReadRepository = investments;
@@ -29,20 +29,36 @@ namespace PortfolioCalculator.Application.PortfolioValuation
             _logger = logger;
         }
 
-        public async Task<PortfolioValuationResultDto> CalculateAsync(string investorId,
+        public async Task<PortfolioValuationResultDto> CalculateAsync(
+            string investorId,
             DateTime referenceDate,
             CancellationToken ct)
         {
-            var topInvestmentIds = await _ownershipReadRepository.GetOwnedInvestmentIdsAsync(OwnerType.Investor, investorId, ct);
-            var investments = await _investmentReadRepository.GetByIdsAsync(topInvestmentIds, ct);
+            var ownedInvestmentIds = await _ownershipReadRepository.GetOwnedInvestmentIdsAsync(OwnerType.Investor, investorId, ct);
+            var directInvestmentsById = await _investmentReadRepository.GetByIdsAsync(ownedInvestmentIds, ct);
+
+            var transactionsById = await _transactionReadRepository
+                .GetUpToDateTransactionsByInvestmentIdsAsync(ownedInvestmentIds, referenceDate, ct);
+
+            var directStockIsins = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            foreach (var inv in directInvestmentsById.Values)
+            {
+                if (inv.Type == InvestmentType.Stock && !string.IsNullOrWhiteSpace(inv.ISIN))
+                {
+                    directStockIsins.Add(inv.ISIN);
+                }
+            }
+
+            var directPricesByIsin = await _quoteReadRepository
+                .GetLatestPricesByIsinsAsync(directStockIsins.ToList(), referenceDate, ct);
 
             var compositionByTypes = new Dictionary<InvestmentType, decimal>();
 
             decimal total = 0m;
 
-            foreach (var investmentId in topInvestmentIds)
+            foreach (var investmentId in ownedInvestmentIds)
             {
-                if (!investments.TryGetValue(investmentId, out var investmentInfo))
+                if (!directInvestmentsById.TryGetValue(investmentId, out var investmentInfo))
                 {
                     _logger.LogWarning("Investment metadata not found for InvestmentId={InvestmentId}. Skipping.", investmentId);
                     continue;
@@ -52,10 +68,15 @@ namespace PortfolioCalculator.Application.PortfolioValuation
                     investmentInfo,
                     referenceDate,
                     fundRecursionGuard: new HashSet<string>(StringComparer.OrdinalIgnoreCase),
+                    transactionsById,
+                    directPricesByIsin,
                     ct);
 
-                total += value;
+                if (value == 0m)
+                    continue;
 
+                total += value;
+               
                 if (compositionByTypes.TryGetValue(investmentInfo.Type, out var currentValue))
                 {
                     compositionByTypes[investmentInfo.Type] = currentValue + value;
@@ -78,6 +99,8 @@ namespace PortfolioCalculator.Application.PortfolioValuation
             InvestmentInfoModel investmentInfo,
             DateTime referenceDate,
             HashSet<string> fundRecursionGuard,
+            IReadOnlyDictionary<string, IReadOnlyList<TransactionModel>> transactionsByInvestmentId,
+            IReadOnlyDictionary<string, decimal?> pricesByIsin,
             CancellationToken ct)
         {
             decimal value;
@@ -85,11 +108,14 @@ namespace PortfolioCalculator.Application.PortfolioValuation
             switch (investmentInfo.Type)
             {
                 case InvestmentType.Stock:
-                    value = await ComputeStockValueAsync(investmentInfo, referenceDate, ct);
+                    value = ComputeStockValue(investmentInfo,
+                        transactionsByInvestmentId,
+                        pricesByIsin);
                     break;
 
                 case InvestmentType.RealEstate:
-                    value = await ComputeRealEstateValueAsync(investmentInfo, referenceDate, ct);
+                    value = ComputeRealEstateValue(investmentInfo,
+                        transactionsByInvestmentId);
                     break;
 
                 case InvestmentType.Fund:
@@ -108,32 +134,36 @@ namespace PortfolioCalculator.Application.PortfolioValuation
             return value;
         }
 
-        private async Task<decimal> ComputeStockValueAsync(InvestmentInfoModel investmentInfo,
-            DateTime referenceDate,
-            CancellationToken ct)
+        private static decimal ComputeStockValue(
+            InvestmentInfoModel investmentInfo,
+            IReadOnlyDictionary<string, IReadOnlyList<TransactionModel>> transactionsByInvestmentId,
+            IReadOnlyDictionary<string, decimal?> pricesByIsin)
         {
             if (string.IsNullOrWhiteSpace(investmentInfo.ISIN))
                 return 0m;
 
-            var transactions = await _transactionReadRepository.GetUpToDateTransactionsAsync(investmentInfo.Id, referenceDate, ct);
-            var shares = transactions.Where(t => t.Type == Domain.Enums.TransactionType.Shares)
+            transactionsByInvestmentId.TryGetValue(investmentInfo.Id, out var transactions);
+            transactions ??= Array.Empty<TransactionModel>();
+
+            var shares = transactions.Where(t => t.Type == TransactionType.Shares)
                 .Sum(t => t.Value);
 
             if (shares == 0m)
                 return 0m;
 
-            var price = await _quoteReadRepository.GetLatestPriceAsync(investmentInfo.ISIN, referenceDate, ct);
+            pricesByIsin.TryGetValue(investmentInfo.ISIN, out var price);
             if (price is null)
                 return 0m;
 
             return shares * price.Value;
         }
 
-        private async Task<decimal> ComputeRealEstateValueAsync(InvestmentInfoModel investmentInfo,
-            DateTime referenceDate,
-            CancellationToken ct)
+        private static decimal ComputeRealEstateValue(
+            InvestmentInfoModel investmentInfo,
+            IReadOnlyDictionary<string, IReadOnlyList<TransactionModel>> transactionsByInvestmentId)
         {
-            var transactions = await _transactionReadRepository.GetUpToDateTransactionsAsync(investmentInfo.Id, referenceDate, ct);
+            transactionsByInvestmentId.TryGetValue(investmentInfo.Id, out var transactions);
+            transactions ??= Array.Empty<TransactionModel>();
 
             var estate = transactions.Where(t => t.Type == TransactionType.Estate)
                 .Sum(t => t.Value);
@@ -152,9 +182,20 @@ namespace PortfolioCalculator.Application.PortfolioValuation
             HashSet<string> fundRecursionGuard,
             CancellationToken ct)
         {
-            var transactions = await _transactionReadRepository.GetUpToDateTransactionsAsync(fundPositionInvestment.Id, referenceDate, ct);
+            // 1) Get fund percentage of THIS fund position (FP)
+            var positionTransactionsByInvestmentId = await _transactionReadRepository
+                .GetUpToDateTransactionsByInvestmentIdsAsync(
+                    new[] { fundPositionInvestment.Id },
+                    referenceDate,
+                    ct);
 
-            var percentRaw = transactions.Where(t => t.Type == TransactionType.Percentage).Sum(t => t.Value);
+            positionTransactionsByInvestmentId.TryGetValue(fundPositionInvestment.Id, out var positionTx);
+            positionTx ??= Array.Empty<TransactionModel>();
+
+            var percentRaw = positionTx
+                .Where(t => t.Type == TransactionType.Percentage)
+                .Sum(t => t.Value);
+
             if (percentRaw == 0m)
                 return 0m;
 
@@ -179,24 +220,46 @@ namespace PortfolioCalculator.Application.PortfolioValuation
 
             try
             {
-                var fundHoldings = await _ownershipReadRepository.GetOwnedInvestmentIdsAsync(OwnerType.Fund, fundId, ct);
-                if (fundHoldings.Count == 0)
+                var fundInvestmentIds = await _ownershipReadRepository.GetOwnedInvestmentIdsAsync(OwnerType.Fund, fundId, ct);
+                if (fundInvestmentIds.Count == 0)
                     return 0m;
 
-                var fundMetadata = await _investmentReadRepository.GetByIdsAsync(fundHoldings, ct);
+                var fundInvestmentsById = await _investmentReadRepository.GetByIdsAsync(fundInvestmentIds, ct);
+
+                var fundTransactionsByInvestmentId = await _transactionReadRepository
+                    .GetUpToDateTransactionsByInvestmentIdsAsync(fundInvestmentIds, referenceDate, ct);
+
+                var fundStockIsins = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (var inv in fundInvestmentsById.Values)
+                {
+                    if (inv.Type == InvestmentType.Stock && !string.IsNullOrWhiteSpace(inv.ISIN))
+                    {
+                        fundStockIsins.Add(inv.ISIN);
+                    }
+                }
+
+                var fundStockPricesByIsin = await _quoteReadRepository
+                    .GetLatestPricesByIsinsAsync(fundStockIsins.ToList(), referenceDate, ct);
 
                 decimal fundTotal = 0m;
 
-                foreach (var holdingInvestmentId in fundHoldings)
+                foreach (var fundInvestmentId in fundInvestmentIds)
                 {
-                    if (!fundMetadata.TryGetValue(holdingInvestmentId, out var holdingInfo))
+                    if (!fundInvestmentsById.TryGetValue(fundInvestmentId, out var investmentInfo))
                     {
                         _logger.LogWarning("Fund holding metadata not found for InvestmentId={InvestmentId} in FundId={FundId}. Skipping.",
-                            holdingInvestmentId, fundId);
+                            fundInvestmentId, fundId);
                         continue;
                     }
 
-                    var holdingValue = await ComputeInvestmentValueAsync(holdingInfo, referenceDate, fundRecursionGuard, ct);
+                    var holdingValue = await ComputeInvestmentValueAsync(
+                        investmentInfo,
+                        referenceDate,
+                        fundRecursionGuard,
+                        fundTransactionsByInvestmentId,
+                        fundStockPricesByIsin,
+                        ct);
+
                     fundTotal += holdingValue;
                 }
 
@@ -207,7 +270,6 @@ namespace PortfolioCalculator.Application.PortfolioValuation
                 fundRecursionGuard.Remove(fundId);
             }
         }
-
 
         private static decimal NormalizePercent(decimal percentRaw)
         {

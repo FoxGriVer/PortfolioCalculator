@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using MongoDB.Driver;
 using PortfolioCalculator.Application.Abstractions.Repositories.Models;
+using PortfolioCalculator.Domain.Enums;
 using PortfolioCalculator.Infrastructure.MongoDB.Documents;
 using PortfolioCalculator.Infrastructure.MongoDB.Init;
 using PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read;
@@ -46,7 +47,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Read
             var doc = new InvestmentDocument
             {
                 Id = "INV-1",
-                Type = "ETF",
+                Type = InvestmentType.Fund.ToString(),
                 ISIN = "ISIN123",
                 City = "Berlin",
                 FundId = "FUND-9"
@@ -62,7 +63,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Read
 
             var expected = new InvestmentInfoModel(
                 "INV-1",
-                "ETF",
+                InvestmentType.Fund,
                 "ISIN123",
                 "Berlin",
                 "FUND-9");
@@ -93,7 +94,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Read
                 new InvestmentDocument
                 {
                     Id = "INV-1",
-                    Type = "ETF",
+                    Type = "Fund",
                     ISIN = "ISIN1",
                     City = "Berlin",
                     FundId = "FUND-1"
@@ -124,14 +125,14 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Read
 
             result["INV-1"].Should().Be(new InvestmentInfoModel(
                 "INV-1",
-                "ETF",
+                InvestmentType.Fund,
                 "ISIN1",
                 "Berlin",
                 "FUND-1"));
 
             result["INV-2"].Should().Be(new InvestmentInfoModel(
                 "INV-2",
-                "Stock",
+                InvestmentType.Stock,
                 "ISIN2",
                 "Munich",
                 "FUND-2"));
@@ -144,7 +145,7 @@ namespace PortfolioCalculator.Infrastructure.Tests.MongoDB.Repos.Read
             var doc = new InvestmentDocument
             {
                 Id = "INV-9",
-                Type = "Bond",
+                Type = "Fund",
                 ISIN = "ISIN9",
                 City = "Hamburg",
                 FundId = "FUND-9"
