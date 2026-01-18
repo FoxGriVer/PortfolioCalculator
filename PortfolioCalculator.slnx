@@ -14,6 +14,7 @@
     <Project Path="source/PortfolioCalculator.ConsoleApp/PortfolioCalculator.ConsoleApp.csproj" />
     <Project Path="source/PortfolioCalculator.Domain/PortfolioCalculator.Domain.csproj" />
     <Project Path="source/PortfolioCalculator.Infrastructure/PortfolioCalculator.Infrastructure.csproj" />
+    <Project Path="source/PortfolioCalculator.WebApi/PortfolioCalculator.WebApi.csproj" Id="2d02908a-0b03-42db-95bc-71dd1b68577c" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/PortfolioCalculator.Application.Tests/PortfolioCalculator.Application.Tests.csproj" Id="9af7f26d-2098-4272-9712-c03753d68139" />
