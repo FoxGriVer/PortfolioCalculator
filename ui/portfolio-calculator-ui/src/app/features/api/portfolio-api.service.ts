@@ -16,6 +16,9 @@ export interface PortfolioValuationResultDto {
 
 @Injectable({ providedIn: 'root' })
 export class PortfolioApiService {
+  // local testing
+  // private readonly baseUrl = 'http://localhost:53820/api/portfolio';
+  
   private readonly baseUrl = '/api/portfolio';
 
   constructor(private http: HttpClient) {}
