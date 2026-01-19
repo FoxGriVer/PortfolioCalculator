@@ -1,7 +1,6 @@
 ﻿using PortfolioCalculator.Application.DI;
 using PortfolioCalculator.Application.PortfolioValuation;
 using PortfolioCalculator.Infrastructure.DI;
-using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace PortfolioCalculator.WebApi

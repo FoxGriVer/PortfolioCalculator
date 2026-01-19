@@ -1,0 +1,131 @@
+<div class="page">
+  <mat-card class="card">
+    <mat-card-title>Portfolio Dashboard</mat-card-title>
+    <mat-card-subtitle>
+      Total value and composition by investment type
+    </mat-card-subtitle>
+
+    <mat-card-content>
+      <!-- Form -->
+      <form class="form" [formGroup]="form" (ngSubmit)="load()">
+        <mat-form-field appearance="outline">
+          <mat-label>Investor ID</mat-label>
+          <input
+            matInput
+            formControlName="investorId"
+            placeholder="e.g. Investor0"
+            autocomplete="off"
+          />
+
+          <mat-error *ngIf="form.controls.investorId.hasError('required')">
+            Investor ID is required
+          </mat-error>
+          <mat-error *ngIf="form.controls.investorId.hasError('minlength')">
+            Too short
+          </mat-error>
+          <mat-error *ngIf="form.controls.investorId.hasError('maxlength')">
+            Too long
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Reference date</mat-label>
+          <input matInput type="date" formControlName="date" />
+          <mat-hint>YYYY-MM-DD</mat-hint>
+
+          <mat-error *ngIf="form.controls.date.hasError('required')">
+            Date is required
+          </mat-error>
+          <mat-error *ngIf="form.controls.date.hasError('pattern')">
+            Use YYYY-MM-DD
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="loading()"
+        >
+          <mat-icon>calculate</mat-icon>
+          Calculate
+        </button>
+      </form>
+
+      <!-- Toolbar -->
+      <div class="toolbar" *ngIf="result() as r">
+        <div class="total">
+          <div class="label">TOTAL</div>
+          <div class="value">
+            {{ r.totalValue | currency:'EUR':'symbol':'1.0-2' }}
+          </div>
+        </div>
+
+        <mat-button-toggle-group
+          [value]="chartMode()"
+          (valueChange)="setChartMode($event)"
+          aria-label="Chart mode"
+        >
+          <mat-button-toggle value="bar">Bar</mat-button-toggle>
+          <mat-button-toggle value="pie">Pie</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <!-- Loading -->
+      <div class="state" *ngIf="loading()">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        <div>Loading…</div>
+      </div>
+
+      <!-- Error -->
+      <div class="error" *ngIf="error() as e">
+        <mat-icon>error</mat-icon>
+        <div class="msg">{{ e }}</div>
+      </div>
+
+      <!-- Content -->
+      <div class="content" *ngIf="result() as r">
+        <div class="chart">
+          <!-- Bar -->
+          <canvas
+            *ngIf="chartMode() === 'bar'"
+            baseChart
+            [type]="barChartType"
+            [data]="barChartData()"
+            [options]="barChartOptions"
+          >
+          </canvas>
+
+          <!-- Pie -->
+          <canvas
+            *ngIf="chartMode() === 'pie'"
+            baseChart
+            [type]="pieChartType"
+            [data]="pieChartData()"
+            [options]="pieChartOptions"
+          >
+          </canvas>
+        </div>
+
+        <div class="table">
+          <div class="table-title">Breakdown</div>
+
+          <div class="row header">
+            <div>Type</div>
+            <div class="right">Value</div>
+          </div>
+
+          <div
+            class="row"
+            *ngFor="let item of r.compositionByType; trackBy: trackByType"
+          >
+            <div>{{ item.type }}</div>
+            <div class="right">
+              {{ item.value | currency:'EUR':'symbol':'1.0-2' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

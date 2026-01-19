@@ -76,7 +76,7 @@ namespace PortfolioCalculator.Application.PortfolioValuation
                     continue;
 
                 total += value;
-               
+
                 if (compositionByTypes.TryGetValue(investmentInfo.Type, out var currentValue))
                 {
                     compositionByTypes[investmentInfo.Type] = currentValue + value;
@@ -142,10 +142,13 @@ namespace PortfolioCalculator.Application.PortfolioValuation
             if (string.IsNullOrWhiteSpace(investmentInfo.ISIN))
                 return 0m;
 
-            transactionsByInvestmentId.TryGetValue(investmentInfo.Id, out var transactions);
-            transactions ??= Array.Empty<TransactionModel>();
+            transactionsByInvestmentId.TryGetValue(investmentInfo.Id, out var transactionsForId);
+            if (transactionsForId == null)
+            {
+                transactionsForId = Array.Empty<TransactionModel>();
+            }
 
-            var shares = transactions.Where(t => t.Type == TransactionType.Shares)
+            var shares = transactionsForId.Where(t => t.Type == TransactionType.Shares)
                 .Sum(t => t.Value);
 
             if (shares == 0m)
@@ -162,12 +165,15 @@ namespace PortfolioCalculator.Application.PortfolioValuation
             InvestmentInfoModel investmentInfo,
             IReadOnlyDictionary<string, IReadOnlyList<TransactionModel>> transactionsByInvestmentId)
         {
-            transactionsByInvestmentId.TryGetValue(investmentInfo.Id, out var transactions);
-            transactions ??= Array.Empty<TransactionModel>();
+            transactionsByInvestmentId.TryGetValue(investmentInfo.Id, out var transactionsForId);
+            if (transactionsForId == null)
+            {
+                transactionsForId = Array.Empty<TransactionModel>();
+            }
 
-            var estate = transactions.Where(t => t.Type == TransactionType.Estate)
+            var estate = transactionsForId.Where(t => t.Type == TransactionType.Estate)
                 .Sum(t => t.Value);
-            var building = transactions.Where(t => t.Type == TransactionType.Building)
+            var building = transactionsForId.Where(t => t.Type == TransactionType.Building)
                 .Sum(t => t.Value);
 
             var totalRalEstateValue = estate + building;
@@ -182,17 +188,19 @@ namespace PortfolioCalculator.Application.PortfolioValuation
             HashSet<string> fundRecursionGuard,
             CancellationToken ct)
         {
-            // 1) Get fund percentage of THIS fund position (FP)
             var positionTransactionsByInvestmentId = await _transactionReadRepository
                 .GetUpToDateTransactionsByInvestmentIdsAsync(
                     new[] { fundPositionInvestment.Id },
                     referenceDate,
                     ct);
 
-            positionTransactionsByInvestmentId.TryGetValue(fundPositionInvestment.Id, out var positionTx);
-            positionTx ??= Array.Empty<TransactionModel>();
+            positionTransactionsByInvestmentId.TryGetValue(fundPositionInvestment.Id, out var positionTransactionsForId);
+            if (positionTransactionsForId == null)
+            {
+                positionTransactionsForId = Array.Empty<TransactionModel>();
+            }
 
-            var percentRaw = positionTx
+            var percentRaw = positionTransactionsForId
                 .Where(t => t.Type == TransactionType.Percentage)
                 .Sum(t => t.Value);
 
