@@ -30,7 +30,7 @@ services:
   cli:
     build:
       context: ..
-      dockerfile: docker/Dockerfile
+      dockerfile: source/PortfolioCalculator.ConsoleApp/Dockerfile
     container_name: PortfolioCalculator-cli
     depends_on:
       - mongo
@@ -40,6 +40,32 @@ services:
     volumes:
       - ../data:/data:ro
     profiles: ["tools"]
+
+  webapi:
+    build:
+      context: ..
+      dockerfile: source/PortfolioCalculator.WebApi/Dockerfile
+    container_name: pc-webapi
+    restart: unless-stopped
+    environment:
+      ASPNETCORE_URLS: http://+:8080
+      Mongo__ConnectionString: mongodb://root:rootpassword@mongo:27017
+      Mongo__Database: PortfolioCalculatorDatabase
+    depends_on:
+      - mongo
+    ports:
+      - "8080:8080"
+  
+  ui:
+    build:
+      context: ../ui/portfolio-calculator-ui
+      dockerfile: Dockerfile
+    container_name: pc-ui
+    restart: unless-stopped
+    depends_on:
+      - webapi
+    ports:
+      - "8088:80"
 
 volumes:
   mongo_data:
