@@ -8,6 +8,8 @@ namespace PortfolioCalculator.Cli;
 public sealed class CliRunner
 {
     private const string DefaultDataFolder = "./data";
+    private const string DataPathEnvVar = "CSV_DATA_PATH";
+
     private readonly IMediator _mediator;
 
     public CliRunner(IMediator mediator)
@@ -94,7 +96,12 @@ public sealed class CliRunner
 
     private async Task HandleImportAsync(string[] args)
     {
-        var folderArg = args.Length >= 2 ? args[1] : DefaultDataFolder;
+        var envPath = Environment.GetEnvironmentVariable(DataPathEnvVar);
+
+        var folderArg =
+            args.Length >= 2
+                ? args[1]
+                : envPath ?? DefaultDataFolder;
 
         if (!Directory.Exists(folderArg))
         {

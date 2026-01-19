@@ -24,11 +24,11 @@ namespace PortfolioCalculator.Application.Import
             var quotesPath = Path.Combine(request.FolderPath, "Quotes.csv");
 
             if (!File.Exists(investmentsPath))
-                throw new FileNotFoundException($"File not found: {investmentsPath}");
+                throw new FileNotFoundException($"{investmentsPath}");
             if (!File.Exists(transactionsPath))
-                throw new FileNotFoundException($"File not found: {transactionsPath}");
+                throw new FileNotFoundException($"{transactionsPath}");
             if (!File.Exists(quotesPath))
-                throw new FileNotFoundException($"File not found: {quotesPath}");
+                throw new FileNotFoundException($"{quotesPath}");
 
             var investments = await _csvImportService.ImportInvestmentsAsync(investmentsPath, cancellationToken);
             var transactions = await _csvImportService.ImportTransactionsAsync(transactionsPath, cancellationToken);

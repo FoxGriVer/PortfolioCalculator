@@ -37,6 +37,7 @@ services:
     environment:
       Mongo__ConnectionString: mongodb://root:rootpassword@mongo:27017
       Mongo__Database: PortfolioCalculatorDatabase
+      CSV_DATA_PATH: /data
     volumes:
       - ../data:/data:ro
     profiles: ["tools"]
