@@ -33,15 +33,13 @@ namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read
             if (isins == null || isins.Count == 0)
                 return new Dictionary<string, decimal?>(StringComparer.OrdinalIgnoreCase);
 
-            // match: isin in (...) && date <= referenceDate
             var match = Builders<QuoteDocument>.Filter.And(
                 Builders<QuoteDocument>.Filter.In(x => x.StockId, isins),
                 Builders<QuoteDocument>.Filter.Lte(x => x.Date, referenceDate));
 
-            // aggregate: sort by (ISIN asc, Date desc), group by ISIN take first
             var results = await _mongoContext.Quotes.Aggregate()
                 .Match(match)
-                .SortByDescending(x => x.Date) // важен desc по Date
+                .SortByDescending(x => x.Date)
                 .Group(
                     x => x.StockId,
                     g => new
@@ -58,7 +56,6 @@ namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read
                 dict[item.ISIN] = item.LatestPrice;
             }
 
-            // для ISIN-ов, у которых нет quote <= date, ключа просто не будет — это ок
             return dict;
         }
     }

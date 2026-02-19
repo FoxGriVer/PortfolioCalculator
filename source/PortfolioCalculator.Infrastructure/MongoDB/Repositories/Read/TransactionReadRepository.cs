@@ -57,18 +57,16 @@ namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read
                 return new Dictionary<string, IReadOnlyList<TransactionModel>>();
             }
 
-            // 1) Один запрос: investmentId IN (...) AND date <= referenceDate
             var filter = Builders<TransactionDocument>.Filter.And(
                 Builders<TransactionDocument>.Filter.In(x => x.InvestmentId, investmentIds),
                 Builders<TransactionDocument>.Filter.Lte(x => x.Date, referenceDate));
 
             var docs = await _mongoContext.Transactions
                 .Find(filter)
-                .SortBy(x => x.InvestmentId) // удобно для группировки
+                .SortBy(x => x.InvestmentId)
                 .ThenBy(x => x.Date)
                 .ToListAsync(ct);
 
-            // 2) Собираем Dictionary<string, List<TransactionModel>>
             var result = new Dictionary<string, List<TransactionModel>>(StringComparer.OrdinalIgnoreCase);
 
             foreach (var document in docs)
@@ -93,7 +91,6 @@ namespace PortfolioCalculator.Infrastructure.MongoDB.Repositories.Read
                 list.Add(model);
             }
 
-            // 3) Превращаем в IReadOnlyDictionary<string, IReadOnlyList<TransactionModel>>
             var readOnly = new Dictionary<string, IReadOnlyList<TransactionModel>>(StringComparer.OrdinalIgnoreCase);
             foreach (var kv in result)
             {
